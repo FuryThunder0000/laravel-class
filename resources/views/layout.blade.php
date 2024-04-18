@@ -43,6 +43,7 @@
                                           <li><a href="{{route('groupes.index')}}">Groupes</a></li>
                                           <li><a href="{{route('stagiaires.index')}}">Stagiaires</a></li>
                                           <li><a href="{{route('formateurs.index')}}">Formateurs</a></li>
+                                          <li><a href="{{route('Recherche')}}">Recherche</a></li>
                                     </ul>
                               </div>
                         </nav>
