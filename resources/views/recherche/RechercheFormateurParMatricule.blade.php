@@ -25,18 +25,13 @@
               <tr>
                     <th>Matricule</th>
                     <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>genre</th>
+                    <th>Prénom</th>
+                    <th>Genre</th>
                     <th>Date de naissance</th>
                     <th>Salaire</th>
               </tr>
         </thead>
         <tbody>
-            @empty($formateur)
-                <tr>
-                    <td colspan="2">Aucun Formateur Trouvee</td>                      
-                </tr>
-            @else
             <tr>
                 <td>{{$formateur->matricule}}</td>
                 <td>{{$formateur->nom}}</td>
@@ -44,9 +39,16 @@
                 <td>{{$formateur->genre}}</td>
                 <td>{{$formateur->date_naissance}}</td>
                 <td>{{$formateur->salaire}}</td>
-            </tr>  
-              @endempty
+            </tr>
         </tbody>
+</table>
+@else
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="6">Aucun Formateur Trouvé</th>
+        </tr>
+    </thead>
   </table>
 @endisset
 @endsection
