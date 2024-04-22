@@ -1,6 +1,6 @@
 @extends('layout')
 @section('title','stagiaires')
-@section('heading', ' New Stagiaire')
+@section('heading', ' New formateur')
 @section('content')
 <div class="bg-light py-3 py-md-5">
     <div class="container">
@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="mb-5">
-                                <h2 class="h3">New Stagiaire</h2>
+                                <h2 class="h3">New formateur</h2>
                             </div>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                             @endforeach
                     </div>
                     @endif
-                    <form action="{{route('stagiaires.store')}}" method="post">
+                    <form action="{{route('formateurs.store')}}" method="post">
                         @csrf
                         @method('POST')
                         <div class="row gy-3 gy-md-4 overflow-hidden">
@@ -49,8 +49,8 @@
                                 <input type="date" class="form-control" name="date_naissance" id="date_naissance" placeholder="Date de naissance">
                             </div>
                             <div class="col-12">
-                                <label for="moyenne" class="form-label">Moyenne <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" name="moyenne" id="moyenne" placeholder="Moyenne" required>
+                                <label for="salaire" class="form-label">Salaire <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" name="salaire" id="salaire" placeholder="salaire" required>
                             </div>
                             <div class="col-12">
                                 <label for="groupe" class="form-label">groupe<span class="text-danger">*</span></label>

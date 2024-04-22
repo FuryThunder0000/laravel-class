@@ -41,8 +41,20 @@ class GroupeController extends Controller
             'libelle' => 'required',
             'filiere_id' => 'required',
         ]));
+
+        $request->validate([
+            'libelle' => 'required|alpha_num|unique:groupes,libelle',
+            'filiere_id' => 'required',
+        ],
+        [
+            'libelle.required' => 'champ Obligatoire',
+            'libelle.alpha_num' => 'champ doit etre alpha numerique',
+            'libelle.unique' => 'ce groupe est deja exist',
+            'filiere_id.required' => 'champ Obligatoire',
+        ]
+    );
         Groupe::create($data);
-        return redirect()->route('groupes.index');
+        return redirect()->route('groupes.index')->with('success', 'Groupe bien ajoute');
     }
 
     /**
@@ -74,12 +86,18 @@ class GroupeController extends Controller
     public function update(Request $request, string $id)
     {
         $groupe = Groupe::find($id);
-        $data = $request->validate(([
-            'libelle' => 'required',
-            'filiere_id' => 'required',
-        ]));
+        $data = $request->validate([
+            'libelle' => 'required|alpha_num|unique:groupes,libelle,'.$groupe->id,
+            'filiere_id' => 'required'
+        ],
+        [
+            'libelle.required' => 'champ Obligatoire',
+            'libelle.alpha_num' => 'champ doit etre alpha numerique',
+            'libelle.unique' => 'ce groupe est deja exist',
+            'filiere_id.required' => 'champ Obligatoire',
+        ]);
         $groupe->update($data);
-        return redirect()->route('groupes.index');
+        return redirect()->route('groupes.index')->with('success', 'Groupe bien modifie');
     }
 
     /**

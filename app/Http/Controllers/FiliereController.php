@@ -25,10 +25,15 @@ class FiliereController extends Controller
 
     public function store(Request $request)
     {
-        // $data = $request->validate(([
-        //     'titre' => 'required',
-        //     'description' => 'required',
-        // ]));
+        $data = $request->validate([
+            'titre' => 'required|unique:filieres,titre',
+            'description' => 'required',
+        ],
+        [
+            'titre.required' => 'champ Obligatoire',
+            'titre.unique' => 'titre deja exist',
+            'description.required' => 'champ Obligatoire',
+        ]);
         
         $titre = $request->input('titre');
         $description = $request->input('description');
@@ -38,7 +43,7 @@ class FiliereController extends Controller
                             'titre' =>$titre,
                             'description' =>$description,
                         ]);
-        return redirect()->route('filieres.index');
+        return redirect()->route('filieres.index')->with('success', 'Filiere bien ajoute');
     }
 
     public function show(string $id)
@@ -59,11 +64,21 @@ class FiliereController extends Controller
     {
         $filiere = Filiere::find($id);
 
+        $data = $request->validate([
+            'titre' => 'required|unique:filieres,titre,'. $filiere->id,
+            'description' => 'required',
+        ],
+        [
+            'titre.required' => 'champ Obligatoire',
+            'titre.unique' => 'titre deja exist',
+            'description.required' => 'champ Obligatoire',
+        ]);
+
         $filiere->titre = $request->input('titre');
         $filiere->description = $request->input('description');
 
         $filiere->save();
-        return redirect()->route('filieres.index');
+        return redirect()->route('filieres.index')->with('success', 'Filiere bien modifie');
     }
 
     public function destroy(string $id)
