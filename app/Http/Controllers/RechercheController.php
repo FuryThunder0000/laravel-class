@@ -47,4 +47,33 @@ class RechercheController extends Controller
         return view('recherche.RechercheFormateurParMatricule',compact('formateur'));
         // dd($formateur);
     }
+
+    public function RechercheNbStagiaireParGroupe(){
+        $NbStagiairesParGroupe = Stagiaire::join('groupes', 'stagiaires.groupe_id','=','groupes.id')
+                                ->selectRaw('groupes.libelle, count(*) as nbInscrit')
+                                ->groupby('groupes.libelle')
+                                ->get();
+        
+        return view('recherche.RechercheNbStagiaireParGroupe',compact('NbStagiairesParGroupe'));
+
+    }
+
+    public function RechercheFormateurMinMaxSalaire(){
+        $FormateursMinSalaire = Formateur::where('salaire','=',Formateur::min('salaire'))->get();
+        $FormateursMaxSalaire = Formateur::where('salaire','=',Formateur::max('salaire'))->get();
+
+        return view('recherche.RechercheFormateurMinMaxSalaire',compact('FormateursMinSalaire','FormateursMaxSalaire'));
+    }
+
+    public function RechercheFormateurParSalaires() {
+        return view('recherche.RechercheFormateurTranchSalaire');
+
+    }
+    public function RechercheFormateurTranchSalaire(Request $request){
+        $MinSalaire = $request->MinSalaire;
+        $MaxSalaire = $request->MaxSalaire;
+        $formateurs = Formateur::whereBetween('salaire',[$MinSalaire,$MaxSalaire])->get();
+
+        return view('recherche.RechercheFormateurTranchSalaire',compact('formateurs'));
+    }
 }

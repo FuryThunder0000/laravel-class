@@ -40,4 +40,20 @@ Route::post('/Recherche/RechercheFormateurParMatricule',
             [RechercheController::class , 'RechercheFormateurParMatricule']
         )->name('Recherche.RechercheFormateurParMatricule');
 
+Route::get('/Recherche/RechercheNbStagiaireParGroupe',
+        [RechercheController::class , 'RechercheNbStagiaireParGroupe']
+        )->name('Recherche.RechercheNbStagiaireParGroupe');
+        
+Route::get('/Recherche/RechercheFormateurMinMaxSalaire',
+        [RechercheController::class , 'RechercheFormateurMinMaxSalaire']
+        )->name('Recherche.RechercheFormateurMinMaxSalaire');
+
+Route::get('/Recherche/RechercheFormateurParSalaire',
+        [RechercheController::class , 'RechercheFormateurParSalaires']
+    )->name('Recherche.RechercheFormateurParSalaire');
+
+Route::post('/Recherche/RechercheFormateurTranchSalaire',
+        [RechercheController::class , 'RechercheFormateurTranchSalaire']
+    )->name('Recherche.RechercheFormateurTranchSalaire');
+
 
