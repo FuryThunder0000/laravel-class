@@ -12,6 +12,6 @@ class Formateur extends Model
 
 
     public function groupes(){
-        return $this->belongsToMany(Groupe::class)->withPivot('annee_formation');
+        return $this->belongsToMany(Groupe::class)->withPivot(['groupe_id','annee_formation']);
     }
 }

@@ -21,7 +21,7 @@ Route::resource('formateurs',FormateurController::class);
 Route::get('/formateursGroupes',[FormateurGroupeController::class,'index'])->name('formateursGroupes.index');
 Route::get('/formateursGroupes/create',[FormateurGroupeController::class,'create'])->name('formateursGroupes.create');
 Route::post('/formateursGroupes/affecter',[FormateurGroupeController::class,'affecter'])->name('formateursGroupes.affecter');
-Route::delete('/formateursGroupes/{id}',[FormateurGroupeController::class,'destroy'])->name('formateursGroupes.destroy');
+Route::delete('/formateursGroupes/{formateur_id}/{groupe_id}',[FormateurGroupeController::class,'destroy'])->name('formateursGroupes.destroy');
 Route::get('/formateursGroupes/{id}/edit',[FormateurGroupeController::class,'edit'])->name('formateursGroupes.edit');
 Route::put('/formateursGroupes/update/{affectation}',[FormateurGroupeController::class,'update'])->name('formateursGroupes.update');
 

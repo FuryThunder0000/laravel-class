@@ -22,14 +22,12 @@ class FormateurRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
                 'matricule' => 'required|numeric',
                 'nom' => 'required|alpha',
                 'prenom' => 'required|alpha_num',
                 'genre' => 'required|in:M,F',
                 'date_naissance' => 'required|date',
                 'salaire' => 'required|numeric|min:3000',
-            
         ];
     }
     public function messages(): array
