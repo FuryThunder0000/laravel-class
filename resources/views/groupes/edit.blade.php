@@ -28,17 +28,23 @@
                                     <div class="row gy-3 gy-md-4 overflow-hidden">
                                           <div class="col-12">
                                                 <label for="libelle" class="form-label">Titre <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" name="libelle" id="libelle" value="{{$groupe->libelle}}" placeholder="Groupe Titre" required>
+                                                <input type="text" class="form-control" name="libelle" id="libelle" value="{{$groupe->libelle}}" placeholder="Groupe Titre">
+                                                @error('libelle')
+                                                <span class="text-danger d-block">{{ $message }}</span>
+                                                @enderror
                                           </div>
                                           <div class="col-12">
                                                 <label for="filiere" class="form-label">Filiere<span class="text-danger">*</span></label>
-                                                <select name="filiere_id" id="filiere_id" class="form-control" required>
+                                                <select name="filiere_id" id="filiere_id" class="form-control">
                                                       @foreach ($filiers as $filiere)
                                                       <option value="{{ $filiere->id }}" @if($groupe->filiere_id === $filiere->id) selected @endif>
                                                             {{ $filiere->titre }}
                                                       </option>
                                                       @endforeach
                                                 </select>
+                                                @error('filiere_id')
+                                                      <span class="text-danger d-block">{{ $message }}</span>
+                                                @enderror
                                           </div>
 
                                           <div class="col-12">

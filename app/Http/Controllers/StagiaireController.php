@@ -116,7 +116,14 @@ class StagiaireController extends Controller
             'groupe_id.required' => 'champ Obligatoire',
         ]
     );
-        $stagiaire->update($data);
+        $stagiaire->update([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'genre' => $request->genre,
+            'date_naissance' => $request->date_naissance,
+            'moyenne' => $request->moyenne,
+            'groupe_id' => $request->groupe_id,
+        ]);
         return redirect()->route('stagiaires.index');
     }
 

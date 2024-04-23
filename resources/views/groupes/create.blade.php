@@ -27,15 +27,21 @@
                         <div class="row gy-3 gy-md-4 overflow-hidden">
                             <div class="col-12">
                                 <label for="libelle" class="form-label">Titre <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="libelle" id="libelle" placeholder="Groupe Titre" required>
+                                <input type="text" class="form-control" name="libelle" id="libelle" placeholder="Groupe Titre">
+                                @error('libelle')
+                                <span class="text-danger d-block">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-12">
                                 <label for="filiere" class="form-label">Filiere<span class="text-danger">*</span></label>
-                                <select name="filiere_id" id="filiere_id" class="form-control" required>
+                                <select name="filiere_id" id="filiere_id" class="form-control">
                                     @foreach ($filieres as $filiere)
-                                        <option value="{{$filiere->id}}">{{$filiere->titre}}</option>
+                                    <option value="{{$filiere->id}}">{{$filiere->titre}}</option>
                                     @endforeach
                                 </select>
+                                @error('filier_id')
+                                    <span class="text-danger d-block">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-12">
                                 <div class="d-grid">

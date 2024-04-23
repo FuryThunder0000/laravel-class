@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Formateur extends Model
 {
     use HasFactory;
-    protected $fillable = ['matricule','nom', 'prenom', 'genre', 'date_naissance'];
+    protected $fillable = ['matricule','nom', 'prenom', 'genre', 'date_naissance', 'salaire'];
 
 
     public function groupes(){

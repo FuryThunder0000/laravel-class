@@ -28,11 +28,17 @@
                                     <div class="row gy-3 gy-md-4 overflow-hidden">
                                           <div class="col-12">
                                                 <label for="titre" class="form-label">Titre <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" name="titre" id="titre" value="{{$filiere->titre}}" placeholder="Filiere Titre" required>
+                                                <input type="text" class="form-control" name="titre" id="titre" value="{{$filiere->titre}}" placeholder="Filiere Titre">
+                                                @error('titre')
+                                                      <span class="text-danger d-block">{{ $message }}</span>
+                                                @enderror
                                           </div>
                                           <div class="col-12">
                                                 <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" name="description" value="{{$filiere->description}}" id="description" placeholder="Description" required>
+                                                <input type="text" class="form-control" name="description" value="{{$filiere->description}}" id="description" placeholder="Description">
+                                                @error('description')
+                                                      <span class="text-danger d-block">{{ $message }}</span>
+                                                @enderror
                                           </div>
                                           <div class="col-12">
                                                 <div class="d-grid">

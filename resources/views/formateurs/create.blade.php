@@ -16,9 +16,9 @@
                     </div>
                     @if ($errors->any())
                     <div class="alert alert-danger">
-                            @foreach ($errors->all() as $error)
-                            <p>{{ $error }}</p>
-                            @endforeach
+                        @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                        @endforeach
                     </div>
                     @endif
                     <form action="{{route('formateurs.store')}}" method="post">
@@ -26,12 +26,25 @@
                         @method('POST')
                         <div class="row gy-3 gy-md-4 overflow-hidden">
                             <div class="col-12">
+                                <label for="matricule" class="form-label">Matricule <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="matricule" id="matricule" placeholder="Matricule">
+                                @error('matricule')
+                                <span class="text-danger d-block">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-12">
                                 <label for="nom" class="form-label">Nom <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="nom" id="nom" placeholder="Nom" required>
+                                <input type="text" class="form-control" name="nom" id="nom" placeholder="Nom">
+                                @error('nom')
+                                <span class="text-danger d-block">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-12">
                                 <label for="prenom" class="form-label">Prenom <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Prenom" required>
+                                <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Prenom">
+                                @error('prenom')
+                                <span class="text-danger d-block">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-12">
                                 <label for="genre" class="form-label">Genre <span class="text-danger">*</span></label><br>
@@ -43,22 +56,23 @@
                                     <input class="form-check-input" type="radio" name="genre" id="genre" value="F">
                                     <label class="form-check-label" for="genre">Femme</label>
                                 </div>
+                                @error('genre')
+                                <span class="text-danger d-block">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-12">
                                 <label for="date_naissance" class="form-label">Date de naissance <span class="text-danger">*</span></label>
                                 <input type="date" class="form-control" name="date_naissance" id="date_naissance" placeholder="Date de naissance">
+                                @error('prenom')
+                                <span class="text-danger d-block">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-12">
                                 <label for="salaire" class="form-label">Salaire <span class="text-danger">*</span></label>
-                                <input type="number" class="form-control" name="salaire" id="salaire" placeholder="salaire" required>
-                            </div>
-                            <div class="col-12">
-                                <label for="groupe" class="form-label">groupe<span class="text-danger">*</span></label>
-                                <select name="groupe_id" id="groupe_id" class="form-control" required>
-                                    @foreach ($groupes as $groupe)
-                                    <option value="{{$groupe->id}}">{{$groupe->libelle}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="number" class="form-control" name="salaire" id="salaire" placeholder="salaire">
+                                @error('salaire')
+                                <span class="text-danger d-block">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-12">
                                 <div class="d-grid">
@@ -75,7 +89,7 @@
 @endsection
 @section('back')
 <h3>
-    <a class="details" href="{{route('groupes.index')}}" title="details" data-toggle="tooltip">
+    <a class="details" href="{{route('formateurs.index')}}" title="details" data-toggle="tooltip">
         <i class="material-icons">&#xE5C4;</i>
         Back
     </a>
