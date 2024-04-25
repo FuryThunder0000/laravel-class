@@ -23,7 +23,7 @@ Route::get('/formateursGroupes/create',[FormateurGroupeController::class,'create
 Route::post('/formateursGroupes/affecter',[FormateurGroupeController::class,'affecter'])->name('formateursGroupes.affecter');
 Route::delete('/formateursGroupes/{formateur_id}/{groupe_id}',[FormateurGroupeController::class,'destroy'])->name('formateursGroupes.destroy');
 Route::get('/formateursGroupes/{id}/edit',[FormateurGroupeController::class,'edit'])->name('formateursGroupes.edit');
-Route::put('/formateursGroupes/update/{affectation}',[FormateurGroupeController::class,'update'])->name('formateursGroupes.update');
+Route::put('/formateursGroupes/update',[FormateurGroupeController::class,'update'])->name('formateursGroupes.update');
 
 Route::get('/Recherche', function () {
     return view('recherche.index');

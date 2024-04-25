@@ -47,14 +47,15 @@ class FormateurGroupeController extends Controller
 
         $formateur = Formateur::find($formateurId);
         $groupe = Groupe::find($groupeId);
-        $formateur->groupes()->attach($groupe,
+        $formateur->groupes()->attach(
+            $groupe,
             [
                 'annee_formation' => $anneeFormation,
                 'created_at' => now(),
                 'updated_at' => now()
-            ]   
+            ]
         );
-        return redirect()->route('formateursGroupes.index')->with('success','affectation bien enregistrer');
+        return redirect()->route('formateursGroupes.index')->with('success', 'affectation bien enregistrer');
     }
 
     public function edit($id){
@@ -64,23 +65,39 @@ class FormateurGroupeController extends Controller
         // dd($affectation);
         return view('formateursGroupes.edit',compact('affectation','formateurs','groupes'));
     }
-    public function update(FormateurGroupeRequest $request, string $id)
-    {
-        // dd($request);
-        // $affectation = Formateur_Groupe::find($id);
-        // $affectation->update($request->all());
-        $formateurID = $request->formateur_id;
-        $groupeID = $request->groupe_id;
-        $formateur = Formateur::find($formateurID);
-        $groupe = Groupe::find($groupeID);
 
-        $formateur->groupes()->updateExistingPivot(
-            $groupe, 
-            [
-            'groupe_id' => $request->groupe_id,
-            'annee_formation' => $request->annee_formation,
-            ]
-    );
+    // public function update(FormateurGroupeRequest $request, string $id)
+    // {
+    //     // dd($request);
+    //     // $affectation = Formateur_Groupe::find($id);
+    //     // $affectation->update($request->all());
+    //     $formateurID = $request->formateur_id;
+    //     $groupeID = $request->groupe_id;
+    //     $formateur = Formateur::find($formateurID);
+    //     $groupe = Groupe::find($groupeID);
+
+    //     $formateur->groupes()->updateExistingPivot(
+    //         $groupe, 
+    //         [
+    //         'groupe_id' => $request->groupe_id,
+    //         'annee_formation' => $request->annee_formation,
+    //         ]
+    // );
+    //     return redirect()->route('formateursGroupes.index')->with('success', 'affectation bien modifie');
+    // }
+
+    public function update(FormateurGroupeRequest $request)
+    {
+        $formateur = Formateur::find($request->input('formateur_id'));
+        $groupe = Groupe::find($request->input('groupe_id'));
+        $formateur_id = $request->input('formateur_id');
+        $groupe_id = $request->input('groupe_id');
+        $annee_formation = $request->input('annee_formation');
+
+        $formateur->groupes()->sync([$groupe_id]);
+        $groupe->formateurs()->sync([$formateur_id]);
+        $formateur->groupes()->updateExistingPivot($groupe_id, ['annee_formation' => $annee_formation]);
+
         return redirect()->route('formateursGroupes.index')->with('success', 'affectation bien modifie');
     }
     public function destroy($formateur_id,$groupe_id){
