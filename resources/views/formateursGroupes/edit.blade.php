@@ -22,7 +22,7 @@
                                     @endforeach
                               </div>
                               @endif
-                              <form action="{{route('formateursGroupes.update', $affectation->id)}}" method="post">
+                              <form action="{{route('formateursGroupes.update')}}" method="post">
                                     @csrf
                                     @method('PUT')
                                     <div class="row gy-3 gy-md-4 overflow-hidden">
