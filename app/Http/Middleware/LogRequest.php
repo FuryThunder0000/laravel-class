@@ -21,3 +21,4 @@ class LogRequest
         return $next($request);
     }
 }
+
