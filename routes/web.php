@@ -88,3 +88,5 @@ Route::get('/registre', [AuthenticationController::class, 'registerView'])->name
 
 Route::post('/login', [AuthenticationController::class, 'login'])->name('auth.login');
 Route::post('/registre', [AuthenticationController::class, 'register'])->name('auth.register');
+
+Route::post('/logout', [AuthenticationController::class, 'logout'])->name('auth.logout');
