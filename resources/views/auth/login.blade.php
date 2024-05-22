@@ -5,58 +5,54 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Login</title>
-      <link rel="shortcut icon" type="image/png" href="{{asset('assets/images/logos/favicon.png')}}" />
-      <link rel="stylesheet" href="{{asset('assets/css/styles.min.css')}}" />
+      <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.min.css')}}" />
 </head>
 
 <body>
-      <!--  Body Wrapper -->
-      <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
-            <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
-                  <div class="d-flex align-items-center justify-content-center w-100">
-                        <div class="row justify-content-center w-100">
-                              <div class="col-md-8 col-lg-6 col-xxl-3">
-                                    <div class="card mb-0">
-                                          <div class="card-body">
-                                                <a href="/" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                                      <h1>Login</h1>
-                                                </a>
-                                                <p class="text-center">Gestion Stagiaire</p>
-                                                <form action="{{route('auth.login')}}" method="post">
-                                                      @csrf
-                                                      @method('POST')
-                                                      <div class="mb-3">
-                                                            <label for="exampleInputEmail1" class="form-label">Email</label>
-                                                            <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                      </div>
-                                                      <div class="mb-4">
-                                                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                                                            <input type="password" class="form-control" name="password" id="exampleInputPassword1">
-                                                      </div>
-                                                      <div class="d-flex align-items-center justify-content-between mb-4">
-                                                            <div class="form-check">
-                                                                  <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked">
-                                                                  <label class="form-check-label text-dark" for="flexCheckChecked">
-                                                                        Remeber this Device
-                                                                  </label>
-                                                            </div>
-                                                            <!-- <a class="text-primary fw-bold" href="/">Forgot Password ?</a> -->
-                                                      </div>
-                                                      <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
-                                                      <div class="d-flex align-items-center justify-content-center">
-                                                            <p class="fs-4 mb-0 fw-bold">New?</p>
-                                                            <a class="text-primary fw-bold ms-2" href="{{route('auth.registerView')}}">Create an account</a>
-                                                      </div>
-                                                </form>
+
+      <!-- old form -->
+
+      <section class="vh-100" style="background-color: #508bfc;">
+            <div class="container py-5 h-100">
+                  <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                              <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                                    <div class="card-body p-5">
+                                          <h3 class="mb-5 text-center">Log in</h3>
+                                          @if (session('error'))
+                                          <div class="alert alert-danger" role="alert">
+                                                {{session('error')}}
                                           </div>
+                                          @endif
+                                          <form action="{{route('auth.login')}}" method="post">
+                                                @csrf
+                                                @method('POST')
+                                                <div class="form-outline mb-4">
+                                                      <label class="form-label" for="">Email</label>
+                                                      <input type="email" placeholder="Email" name="email" class="form-control form-control-lg" />
+                                                </div>
+
+                                                <div class="form-outline mb-4">
+                                                      <label class="form-label" for="">Password</label>
+                                                      <input type="password" placeholder="Password" name="password" class="form-control form-control-lg" />
+                                                </div>
+
+                                                <!-- Checkbox -->
+                                                <button class="col-12 btn btn-primary btn-lg" type="submit">Login</button>
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                      <p class="fs-7 mb-0 fw-bold">New?</p>
+                                                      <a class="text-primary fw-bold ms-2" href="{{route('auth.registerView')}}">Create an account</a>
+                                                </div>
+                                          </form>
                                     </div>
                               </div>
                         </div>
                   </div>
             </div>
-      </div>
-      <script src="{{asset('assets/libs/jquery/dist/jquery.min.js')}}"></script>
-      <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+      </section>
+
+
+      <script src="{{asset('bootstrap/bootstrap.min.js')}}"></script>
 </body>
 
 </html>
