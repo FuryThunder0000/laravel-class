@@ -19,6 +19,11 @@ class AuthenticationController extends Controller
     }
     public function register(Request $request)
     {
+        $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:4',
+        ]);
         $nom = $request->name;
         $email = $request->email;
         $passwordhash = Hash::make($request->password);
@@ -40,6 +45,15 @@ class AuthenticationController extends Controller
             'password' => $password,
         ])) {
             return redirect()->route('home');
+        }else {
+            return redirect()->route('auth.loginView')->with('error','emai ou mot de passe est introvable');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('auth.loginView');
     }
 }
